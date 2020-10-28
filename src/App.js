@@ -1,14 +1,17 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import './App.css';
 
 function App() {
+
+  const [pokeData, setPokeData]= useState([]);
 
 
   useEffect(() => {
     axios.get(`https://pokeapi.co/api/v2/pokemon/`)
     .then((result) => {
       console.log(result.data)
+      setPokeData(result.data)
     })
   }) 
 
