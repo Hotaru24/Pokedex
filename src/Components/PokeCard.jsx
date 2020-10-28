@@ -1,19 +1,23 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-
+import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 
 const PokeCard = (props) =>  {
 
+  const [pokeData, setPokeData]= useState([]);
+  const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeData.id}.png`
+
+  useEffect(() => {
+    axios.get(props.poke.url)
+    .then((result) => {
+      setPokeData(result.data)
+    })
+  });
+
   return(
-    <div className="card mb-3">
-
-          <img  src={props.poke.url.sprites.front_default}  alt={props.poke.url.name}/>
-
-
-            <h5 >{props.poke.url.name}</h5>
-
-
-    </div>
+    <>
+      <img  src={imgUrl}  alt={props.poke.name}/>
+      <h5 >{props.poke.name}</h5> 
+    </>
     )
 };
 
