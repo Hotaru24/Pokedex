@@ -1,23 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import axios from 'axios';
+import React, {useContext} from 'react';
 import PokeCard from "./PokeCard";
+import pokeCtx from "./pokeCtx";
 
-function PokeList () {
+const PokeList = () => {
 
-  const [pokeList, setPokeList]= useState([]);
-
-  useEffect(() => {
-    axios.get(`https://pokeapi.co/api/v2/pokemon/`)
-    .then((result) => {
-      setPokeList(result.data.results)
-    })
-  },[]);
+  const [pokeList] = useContext(pokeCtx);
+  console.log(pokeList)
   
-
   return (
     <div className="App">
+      <p>toto</p>
        <h1>The Great Pokedex</h1>
-       {console.log(pokeList)}
+       {console.log(pokeCtx)}
        <div>
         {pokeList.map(
           (poke, index) => {

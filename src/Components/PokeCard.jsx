@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+
 import {Link} from 'react-router-dom';
-import PokePage from './PokePage'
 
 const PokeCard = (props) => {
 
@@ -16,13 +16,15 @@ const PokeCard = (props) => {
   });
 
   return(
-
-      <Link to="/page">
-      <img  src={imgUrl}  alt={props.poke.name}/>
-      <h5 >{props.poke.name}</h5> 
+    <>
+      <Link to={{
+      pathname: `/page/${pokeData.id}`
+      }} >
+        <img  src={imgUrl}  alt={pokeData.name}/>
+        <h5 >{pokeData.name}</h5> 
       </Link>
-
-    )
+    </>
+  )
 };
 
 export default PokeCard;
